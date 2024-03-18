@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+s>CustomerSeeder:
+
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,5 +15,6 @@ class CustomerSeeder extends Seeder
     public function run(): void
     {
         //
+        
     }
 }
