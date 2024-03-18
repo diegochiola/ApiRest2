@@ -16,14 +16,14 @@ class InvoiceFactory extends Factory
      */
     public function definition(): array
     {
-        $status = $this->faker->randomeElement(['B','P','V']); //estados del invoice
+        $status = $this->faker->randomElement(['B','P','V']); //estados del invoice
         return [
             //
             'customer_id' => Customer::factory(), //cuando llamemos al seeder
             'amount' => $this->faker->numberBetween(100,20000),
             'status' => $status,
-            'billed_date' => $this->faker->dateTimeThisCentury(),
-            'paid_date' => $status == 'P' ? $this->faker->dateTimeThisCentury() : NULL,
+            'billed_dated' => $this->faker->dateTimeThisCentury(),
+            'paid_dated' => $status == 'P' ? $this->faker->dateTimeThisCentury() : NULL,
         ];
  
     }
