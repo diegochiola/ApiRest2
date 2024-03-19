@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use App\Http\Resources\CustomerCollection;
+use App\Http\Resources\CustomerResource;
 use App\Filters\CustomerFilter; // Importa la clase CustomerFilter
 use Illuminate\Http\Request;
 
@@ -57,6 +58,11 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         //
+        $includeInvoices = request()->query('includeInvoices');
+        if($includeInvoices){
+            return new CustomerResource($customer->loadMissing('invoices')); // que cargue el model con la relacion invoices una vez que haya cartgado el valor de customer
+        }
+        return new CustomerResource($customer);
     }
 
     /**
