@@ -30,4 +30,14 @@ class BulkStoreInvoiceRequest extends FormRequest
             '*.paidDated' => ['date_format:Y-m-d H:i:s', 'nullable'],
         ];
     }
+    protected function prepareForValidation(){
+        $data = [];
+        foreach($this->toArray() as $obj){
+            $obj['customer_id'] = $obj['customer_id'] ?? null;
+            $obj['billed_dated'] = $obj['billedDated'] ?? null;
+            $obj['paid_dated'] = $obj['paidDated'] ?? null;
+            $data[]= $obj;
+        }
+        $this->merge($data);
+    }
 }
