@@ -10,6 +10,13 @@ class Customer extends Model
     use HasFactory;
     protected $fillable = [
         //lo rellenaremos luego
+        'name',
+        'type',
+        'email',
+        'address',
+        'city',
+        'state',
+        'postal_code'
     ];
    //relacion has many (un clkiente puede tener muchas facturas)
    public function invoices () {
