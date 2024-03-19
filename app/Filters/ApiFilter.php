@@ -1,7 +1,7 @@
 <?php
 namespace App\Filters;
 use Illuminate\Http\Request;
-class ApiFilter{
+class ApiFilter {
 
     //creamos los array protected vacios
     protected $safeParams =[]; //parametros por los que queremos fikltrar
@@ -11,12 +11,12 @@ class ApiFilter{
     //clase de la que se extenderan las demas clases
 public function transform(Request $request){
     $eloquery = [];
-    foeach($this->safeParams as $parm => $operators){
-        $query = request->query($parm);
+    foreach($this->safeParams as $parm => $operators){
+        $query = $request->query($parm);
         if (!isset ($query)){
             continue;
         }
-        $column = $this->columnMap[$parm] ?? $param;
+        $column = $this->columnMap[$parm] ?? $parm;
         foreach( $operators as $operator){
             if( isset($query[$operator])){
                 $eloQuery[] = [$column, $this->operatorMap[$operator], $query[$operator]];

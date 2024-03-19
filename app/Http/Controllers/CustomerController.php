@@ -6,17 +6,23 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use App\Http\Resources\CustomerCollection;
+use App\Filters\CustomerFilter;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    public function index(Request $request)
     {
         //
-        $customers = Customer::paginate();
-        return new CustomerCollection($customers);
+        $filter = new Customerfilter();
+        $queryItems= $filter->transform($request);
+        
+        $customers = Customer::where($queryItems);
+        return new CustomerCollection($customers->paginate()->appends($request->query()));//los filtros que estaba,mos metiendo el la query , se mantenga en la pagiuna web
     }
 
     /**
