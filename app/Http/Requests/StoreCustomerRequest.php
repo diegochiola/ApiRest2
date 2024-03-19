@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Rule; //importar validation rule
+
 class StoreCustomerRequest extends FormRequest
 {
     /**
@@ -11,7 +13,8 @@ class StoreCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        //quien tiene los permisos
+        return true;
     }
 
     /**
@@ -22,7 +25,19 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            //reglas de validacion para poder dar de alta cliente
+            'name' => ['required'],
+            'type' => ['required', Rule::in(['I','B','i','b'])],
+            'email' => ['required', 'email'],
+            'address' => ['required'],
+            'city' => ['required'],
+            'state' => ['required'],
+            'postalCode' => ['required'], //para que postal code no de error se crea la funcion de abajo
         ];
+    }
+    protected function prepareForValidation(){
+        $this->merge([
+            'postal_code'=> $this->postalCode
+        ]);
     }
 }
