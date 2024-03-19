@@ -16,19 +16,8 @@ class CustomerFactory extends Factory
      */
     public function definition(): array
     {
-        $type = $this->faker->randomElement(['I','B']);  //si es una compañia o es individual
-        $name= $type == 'I' ? $this->faker->name() : $this->faker->company(); //operador ternario
         return [
-            //dentro del return
-            'name' => $name,
-            'type'=> $type,
-            'email'=> $this->faker->email(),
-            'address'=> $this->faker->streetAddress(),
-            'city' => $this->faker->city(),
-            'state' => $this->faker->state(),
-            'postal_code'=> $this->faker->postCode()
-        
+            //
         ];
-
     }
 }
