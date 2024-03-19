@@ -6,7 +6,7 @@ use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Models\Invoice;
 use App\Http\Resources\InvoiceCollection;
-use App\Filters\InvoiceFilter; // Importa la clase CustomerFilter
+use App\Filters\InvoiceFilter; 
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
